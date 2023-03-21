@@ -1,15 +1,23 @@
 <?php
 
-$lunghezza = $_GET["lunghezza"];
-$key = $_GET["key"];
+$lunghezza = "";
 
-$special = "£!$?%";
 
-$psw_generated = $lunghezza . $special[random_int(0, strlen($special)-1)] . $key;
+$special = "^+*/()!$?%";
+
+
+
+
+if (isset($lunghezza)){
+   
+    $lunghezza = $_GET["lunghezza"];
+
+
+
+    };  
+
 
 ?>
-
-
 
 
 
@@ -26,8 +34,8 @@ $psw_generated = $lunghezza . $special[random_int(0, strlen($special)-1)] . $key
 <body>
 
 <div class="container">
-
-    <label for="password" class="form-label">Generatore di password quasi sicure</label>
+    <?php var_dump($lunghezza); ?>
+    <label for="lunghezza" class="form-label">Generatore di password quasi sicure</label>
     <form action="" method="GET">
         <div class="container">
 
@@ -35,14 +43,7 @@ $psw_generated = $lunghezza . $special[random_int(0, strlen($special)-1)] . $key
                 <p class="col-4 my-auto">   
                     Lunghezza password: 
                 </p>
-                <input type="text" name="lunghezza" id="password" class="col-4 ">
-            </div>
-                
-            <div class="col-12 row justify-content-between align-middle">
-                <p class="col-auto my-auto">   
-                    inserisci una personale parola chiave:
-                </p>
-                <input type="text" name="key" id="key" class="col-4 ">
+                <input type="text" name="lunghezza" id="lunghezza" class="col-4 ">
             </div>
                 
             <button class="col-auto  ms-2" type="submit">Genera</button>
@@ -51,9 +52,18 @@ $psw_generated = $lunghezza . $special[random_int(0, strlen($special)-1)] . $key
     </form>
     <div>
         Ecco la tua password: 
-        <?php
-        echo $psw_generated
+        <?php 
+        
+        if (isset($lunghezza)){
+            $lunghezza_stringa = lenstr($special);
+            for ($i = 0 ; $i <= $lunghezza_stringa; $i++){
+                $psw_generated += $special[random_int(0,10)];
+            };
+            
+            echo $psw_generated;};  
+            var_dump($psw_generated);
         ?>
+        
     </div>
 </div>
 
