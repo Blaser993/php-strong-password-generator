@@ -1,7 +1,11 @@
 <?php
 
-$lunghezza = $_GET["lunghezza"]
+$lunghezza = $_GET["lunghezza"];
+$key = $_GET["key"];
 
+$special = "£!$?%";
+var_dump(strlen($special)-1);
+$psw_generated = $lunghezza . $special[random_int(0, strlen($special)-1)] . $key;
 
 ?>
 
@@ -26,16 +30,30 @@ $lunghezza = $_GET["lunghezza"]
     <label for="password" class="form-label">Generatore di password quasi sicure</label>
     <form action="" method="GET">
         <div class="container row">
-            <input type="text" name="lunghezza" id="password" class="col-10 flex-grow-1" placeholder="Inserisci la lunghezza in numeri della password richiesta">
+            <div class="col-12 row justify-content-between align-middle">
+                <p class="col-4 my-auto">   
+                    Lunghezza password: 
+                </p>
+                <input type="text" name="lunghezza" id="password" class="col-4">
+            </div>
+                
+            <div class="col-12 row justify-content-between align-middle">
+                <p class="col-auto my-auto">   
+                    inserisci una personale parola chiave:
+                </p>
+                <input type="text" name="key" id="password" class="col-4">
+            </div>
+                
             <button class="col-auto  ms-2" type="submit">Genera</button>
         </div>
-        <div>
-            Ecco la tua password: 
-            <?php
-            echo $lunghezza
-            ?>
-        </div>
+
     </form>
+    <div>
+        Ecco la tua password: 
+        <?php
+        echo $psw_generated
+        ?>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
