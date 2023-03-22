@@ -25,7 +25,7 @@ function generaPsw($lunghezza){
 }
 
 
-$newPsw = generaPsw(10);
 
-var_dump($newPsw)
+
+
 ?>
