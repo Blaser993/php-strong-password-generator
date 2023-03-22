@@ -1,20 +1,15 @@
 <?php
 
-$lunghezza = "";
+require_once __DIR__ . "/function.php";
 
+$lunghezza = isset($_GET["lunghezza"]) ? $_GET["lunghezza"] : null;
 
-$special = "^+*/()!$?%";
+if($lunghezza !== null && is_numeric($lunghezza)){
 
+    $lunghezza = intval($lunghezza);
+    $psw = generaPsw($lunghezza);
 
-
-
-if (isset($lunghezza)){
-   
-    $lunghezza = $_GET["lunghezza"];
-
-
-
-    };  
+}
 
 
 ?>
@@ -34,7 +29,7 @@ if (isset($lunghezza)){
 <body>
 
 <div class="container">
-    <?php var_dump($lunghezza); ?>
+    
     <label for="lunghezza" class="form-label">Generatore di password quasi sicure</label>
     <form action="" method="GET">
         <div class="container">
@@ -43,7 +38,7 @@ if (isset($lunghezza)){
                 <p class="col-4 my-auto">   
                     Lunghezza password: 
                 </p>
-                <input type="text" name="lunghezza" id="lunghezza" class="col-4 ">
+                <input type="number" name="lunghezza" id="lunghezza" class="col-4" min="6" max="16">
             </div>
                 
             <button class="col-auto  ms-2" type="submit">Genera</button>
@@ -53,15 +48,9 @@ if (isset($lunghezza)){
     <div>
         Ecco la tua password: 
         <?php 
-        
-        if (isset($lunghezza)){
-            $lunghezza_stringa = lenstr($special);
-            for ($i = 0 ; $i <= $lunghezza_stringa; $i++){
-                $psw_generated += $special[random_int(0,10)];
-            };
-            
-            echo $psw_generated;};  
-            var_dump($psw_generated);
+                   
+            echo isset($psw) ? $psw : "_";  
+
         ?>
         
     </div>
